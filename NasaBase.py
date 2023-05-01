@@ -1,37 +1,33 @@
 import sys
 import requests, json
 from pprint import pprint
-from PySide6.QtWidgets import (QApplication, QLabel, QWidget, QPushButton, QLabel, QVBoxLayout, QDateEdit)
+from PySide6.QtWidgets import (QApplication, QLabel, QWidget, QPushButton, QLabel, QVBoxLayout, QDateEdit,QHBoxLayout)
 from PySide6.QtCore import Slot, QDate, Qt   
 from PySide6.QtGui import QPixmap
 from qt_material import apply_stylesheet
 
 
+
 my_key = 'D8FJrAVDcE5RHJ29uwD5lRftLXMDO6Tw3iGnj19V'
 endpoint = 'https://api.nasa.gov/planetary/apod'
 
+
 payload = {
     'api_key': my_key,
-    'start_date': '2023-03-09',
-    'end_date': '2023-03-11'
+    'start_date': '2011-05-09',
+    'end_date': '2011-05-16'
 }
 
-# try:
-#     r = requests.get(endpoint, params=payload)
-#     if r.ok:
-#         data = r.json()
-#         pprint(data)
-# except Exception as e:
-#     print(e)
-#     print('please try again')           
+
 
 
 class MyWindow(QWidget):
     def __init__(self):
         super().__init__()
-
+      
         vbox = QVBoxLayout()
-        self.my_lbl = QLabel('<h1>Search NASA Astronomy Photo of the Day</h1>')
+        hbox = QHBoxLayout()
+        self.my_lbl = QLabel('<h2>Search NASA Astronomy Photo of the Day</h2>')
         self.pixmap = QPixmap()
         self.date_edit = QDateEdit()
         self.date_edit.setDate(QDate.currentDate())
@@ -39,11 +35,16 @@ class MyWindow(QWidget):
         self.date_edit.setCalendarPopup(True)
         self.my_btn = QPushButton("Search")
         self.my_btn.clicked.connect(self.on_click)
-        vbox.addWidget(self.my_lbl)
+        hbox.addWidget(self.my_lbl)
         vbox.addWidget(self.date_edit)
         vbox.addWidget(self.my_btn)
-        self.setLayout(vbox)
-        self.resize(800, 600)
+        
+        main_layout =QHBoxLayout()
+        main_layout.addLayout(hbox)
+        main_layout.addLayout(vbox)
+        self.setLayout(main_layout)
+    
+        self.resize(2000, 1000)
 
     @Slot()
     def on_click(self):
@@ -56,6 +57,8 @@ class MyWindow(QWidget):
             'start_date': f'{value.year()}-{value.month()}-{value.day()}',
             'end_date': f'{value.year()}-{value.month()}-{value.day()}'
         }
+
+      
 
         try:
             r = requests.get(endpoint, params=payload)
@@ -89,7 +92,7 @@ class MyWindow(QWidget):
  
 
 app = QApplication([])
-apply_stylesheet(app, theme='dark_teal.xml')
+apply_stylesheet(app, theme='dark_blue.xml')
 
 my_win = MyWindow()
 my_win.show()
