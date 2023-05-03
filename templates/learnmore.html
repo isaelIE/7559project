@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>About {{ rover_name.capitalize() }} Rover</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container my-5">
+      <h1 class="text-center mb-4">About {{ rover_name.capitalize() }} Rover</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Launch Date:</h4>
+        </div>
+        <div class="col-md-8">
+          <p>{{ launch_date }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Landing Date:</h4>
+        </div>
+        <div class="col-md-8">
+          <p>{{ landing_date }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Status:</h4>
+        </div>
+        <div class="col-md-8">
+          <p>{{ status }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Total Photos Taken:</h4>
+        </div>
+        <div class="col-md-8">
+          <p>{{ total_photos }}</p>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <a href="{{ url_for('nasarover') }}" class="btn btn-primary">Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>
