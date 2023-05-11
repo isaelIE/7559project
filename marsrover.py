@@ -53,5 +53,3 @@ def about(rover_name):
     landing_date, launch_date, status, total_photos = get_rover_info(rover_name)
     return render_template('learnmore.html', rover_name=rover_name, landing_date=landing_date, launch_date=launch_date, status=status, total_photos=total_photos)
 
-if __name__ == '__main__':
-    app.run(debug=True)
