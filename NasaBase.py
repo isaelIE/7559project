@@ -1,8 +1,8 @@
 from flask import Flask,request, render_template
 import requests, json
 from flask_bootstrap import Bootstrap5
-from datetime import date
-import datetime
+from datetime import datetime
+
 
 
 app = Flask(__name__)
@@ -20,6 +20,23 @@ format = '%Y/%m/%d'
 
 
 
+def validate_date_start(date):
+    try:
+        date_obj = datetime.strptime(date, "%Y-%m-%d")
+        min_date = datetime.strptime("2015-06-13", "%Y-%m-%d")
+        return date_obj >= min_date
+    except ValueError:
+        return False
+
+def validate_date_end(date):
+    try:
+        date_obj = datetime.strptime(date, "%Y-%m-%d")
+        max_date = datetime.strptime(date.today(), "%Y-%m-%d")
+        return date_obj <= max_date
+    except ValueError:
+        return False
+
+
 
 endpoint = 'https://api.nasa.gov/planetary/apod'
 
@@ -31,9 +48,12 @@ def main():
 @app.route('/', methods=['POST'])
 def my_form_post():
 
-    variable = request.form['date']
-    datetime_start = datetime.datetime.strptime(variable, format)
-    datetime_end = datetime.datetime.strptime(variable, format)
+    variable_start = request.form['date']
+    validate_date_start(variable_start)
+    variable_end = request.form['enddate']
+
+    datetime_start = datetime.strptime(variable_start, format)
+    datetime_end = datetime.strptime(variable_end, format)
     payload = {
     'api_key': my_key,
     'start_date': datetime_start.date(),
