@@ -43,36 +43,33 @@ pressure_readings.append(data['sols'][3]['pressure'])
 pressure_readings.append(data['sols'][4]['pressure'])
 pressure_readings.append(data['sols'][5]['pressure'])
 
-#print(max_temperature)
-#print(min_temperature)
-
+print(max_temperature)
+print(min_temperature)
+print(pressure_readings)
 #create a datasheet
 data ={"MinTempDay2":min_temperature[0], "MinTempDay5":min_temperature[1],"MinTempDay6":min_temperature[2],"MaxTempDay2":max_temperature[0],"MaxTempDay5":max_temperature[1],"MaxTempDay6":max_temperature[2]}
-#data2 ={"PressureReading1":pressure_readings[0], "PressureReading2":pressure_readings[1],"PressureReading3":pressure_readings[2],"PressureReading4":pressure_readings[3], "PressureReading5":pressure_readings[4], "PressureReading6":pressure_readings[5]}
+data2 ={"PressureReading1":pressure_readings[0], "PressureReading2":pressure_readings[1],"PressureReading3":pressure_readings[2],"PressureReading4":pressure_readings[3], "PressureReading5":pressure_readings[4]}
 min_temp=list(data.keys())
 max_temp=list(data.values())
 
+#r1 = np.arange(5)
+#plt.subplot(1, 2, 2)
+#plt.bar(r1,min_temp, max_temp,color='red')
+#plt.xlabel("Temperature Readings")
+#plt.ylabel("Highs and Lows")
+#plt.title("Mars Weather Temperature Reading")
+#plt.show()
 
+pressure_readings = list(data2.keys())
+pressure_readings = list(data2.values())
 
-plt.bar(min_temp, max_temp,color='red',width=0.4)
+plt.xlabel("Pressure Readings")
+plt.ylabel("Pressure throughout days")
+plt.title("Mars Pressure Readings")
+days =[1,2,3,4,5]
+#plt.subplot(1,2,1)
+plt.bar( days, pressure_readings, color ='blue',width=.4)
 
-
-
-plt.xlabel("Temperature Readings")
-plt.ylabel("Highs and Lows")
-plt.title("Mars Weather Temperature Reading")
-
-
-#pressure_readings = list(data2.keys())
-#pressure_readings = list(data2.values())
-
-#plt.xlabel("Pressure Readings")
-#plt.ylabel("Pressure throughout days")
-#plt.title("Mars Pressure Readings")
-
-
-#plt.bar(pressure_readings, colo ='blue',width=.4)
-#plt.savefig()
 fig =plt.gcf()
 #plt.savefig('bargraph.png',dpi=300,bbox_inches='tight')
 #plt.show()
