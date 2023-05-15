@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>CST 205 APOD</title>
+  {{ bootstrap.load_css() }}
+
+</head>
+<body>
+
+
+    <div class="container">
+      <h1 class="mt-4">Nasa's Picture of the Day Photos</large></h1>
+      {% if data %}
+        {% for i in data %}
+
+        <!--loops through data passed in and grabs appropriate url and displays them as the src image-->
+              <div class="card">
+            <img src="{{i['url']}}" class="rounded-circle">
+            <div class="card text-bg-primary mb-3" style="max-width: 100rem;">
+            <div class="card-body">
+              <!-- displays the appropriate title based on recieved data-->
+              <h5 class="card-title">{{i['title']}}</h5>
+              <p class="lead">
+                <!--displays the appropriate explaination based on the inputted data-->
+                {{i['explanation']}}
+              </p>
+          </div>
+        </div>
+        <br>
+
+      {% endfor %}
+    {% else %}
+      no data
+    {% endif %}
+</div>
+<a href="{{ url_for('main') }}" class="btn btn-info" role="button">Click to go Back to Nasa Date Picker</a>
+</body>
+</html>
+
+
