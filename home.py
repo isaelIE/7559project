@@ -3,11 +3,21 @@ import subprocess
 from flask import Flask, render_template, request
 from marsrover import get_latest_photos, get_rover_info
 from epic import get_epic_data
+from Earthy import store_date, EarthForm
 import datetime
 import random
 import sys
+from flask_bootstrap import Bootstrap5
 
 app = Flask(__name__)
+
+#added this so my webpage works
+bootstrap = Bootstrap5(app)
+app.config['SECRET_KEY'] = 'csumb-otter'
+earthd="2015-02-01"
+earthd2="2015-03-01"
+earthd3="2016-02-01"
+my_key = 'D8FJrAVDcE5RHJ29uwD5lRftLXMDO6Tw3iGnj19V'
 
 @app.route('/')
 def home():
@@ -48,6 +58,16 @@ def nasa_epic():
 def nasa_base():
     subprocess.Popen(['python', 'NasaBase.py'])
     return 'Nasa Base app launched'
+
+@app.route('/earthsat', methods=('GET', 'POST'))
+def earthss():
+    date= ""
+    form = EarthForm()
+    if form.validate_on_submit():
+        date=form.earth_date.data
+        return render_template('earth.html',form=form, date=date, earthd=earthd, earthd2=earthd2, earthd3=earthd3, my_key=my_key)
+    return render_template('earth.html',form=form, earthd=earthd, earthd2=earthd2, earthd3=earthd3, my_key=my_key)
+
 
 # @app.route('/mars_weather')
 # def mars_weather():

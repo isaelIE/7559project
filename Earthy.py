@@ -3,12 +3,12 @@
 import requests
 import random
 import datetime
+import subprocess
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-from flask_bootstrap import Bootstrap5
 
 #bootstrap = Bootstrap5(app)
 
@@ -41,14 +41,6 @@ def store_date(my_date):
     earthd = my_date
 
 
-#@app.route('/', methods=('GET', 'POST'))
-#def earth():
-#    form = EarthForm()
-#    store_date(form.earth_date.data)
-#    if form.validate_on_submit():
-#        store_date(form.earth_date.data)
-#        return redirect('/view_playlist')
-#    return render_template('earth.html', form=form, earthd=earthd, earthd2=earthd2, earthd3=earthd3, my_key=my_key)
 
 @app.route('/', methods=('GET', 'POST'))
 def earths():
