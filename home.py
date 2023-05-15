@@ -68,11 +68,9 @@ def earthss():
         return render_template('earth.html',form=form, date=date, earthd=earthd, earthd2=earthd2, earthd3=earthd3, my_key=my_key)
     return render_template('earth.html',form=form, earthd=earthd, earthd2=earthd2, earthd3=earthd3, my_key=my_key)
 
-
-# @app.route('/mars_weather')
-# def mars_weather():
-#     subprocess.Popen(['python3.11', 'NasaBase.py'])
-#     return 'Mars weather app launched'
+@app.route('/mars_weather')
+def mars_weather():
+    return render_template('mars.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
