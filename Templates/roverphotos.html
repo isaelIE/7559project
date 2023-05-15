@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>NASA Mars Rover Photos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container my-5">
+      <h1 class="text-center mb-4">NASA Mars Rover Photos</h1>
+      <form method="post">
+        <div class="form-group">
+          <label for="rover">Select Rover:</label>
+          <select class="form-control" id="rover" name="rover">
+            <option value="perseverance">Perseverance</option>
+            <option value="curiosity">Curiosity</option>
+            <option value="opportunity">Opportunity</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Photos</button>
+      </form>
+      {% if rover_name %}
+      <div class="text-center mt-3">
+        <a href="{{ url_for('about', rover_name=rover_name) }}" class="btn btn-info">About {{ rover_name.capitalize() }}</a>
+      </div>
+      {% endif %}
+      {% if photos %}
+      <div class="row mt-5">
+        {% for photo in photos %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{ photo.img_src }}" class="card-img-top" alt="{{ photo.camera.full_name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ photo.camera.full_name }}</h5>
+              <p class="card-text">Time Taken: Sol {{ photo.sol }}</p>
+              <p class="card-text">Rover: {{ photo.rover.name }}</p>
+              <p class="card-text">Sol to Earth Time: {{ photo.earth_time }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

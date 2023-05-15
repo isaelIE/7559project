@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>NASA EPIC Images</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5 mb-3">NASA EPIC Images</h1>
+
+      <form method="POST">
+        <div class="form-group">
+          <label for="date">Enter a date (yyyy-mm-dd):</label>
+          <input type="text" class="form-control" id="date" name="date" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      {% if message %}
+      <div class="alert alert-danger mt-3" role="alert">
+        {{ message }}
+      </div>
+      {% endif %}
+
+      {% if image_info %}
+      <div class="card mt-3">
+        <h2 class="card-header"></h2>
+        <img class="card-img-top img-fluid" src="{{ image_info.url }}" alt="NASA EPIC Image" style="width: 600px;">
+        <div class="card-body">
+          <p class="card-text"><strong>Information about Image</strong></p>
+          <p class="card-text"><strong>Date:</strong> {{ image_info.date }}</p>
+          <p class="card-text"><strong>Source:</strong> {{ image_info.caption }}</p>
+          <p class="card-text"><strong>Centroid coordinates:</strong> {{ image_info.centroid_coordinates }}</p>
+          <p class="card-text"><strong>Sun distance:</strong> {{ image_info.sun_distance }}</p>
+          <p class="card-text"><strong>DSCOVR distance:</strong> {{ image_info.dscovr_distance }}</p>
+          <p class="card-text"><strong>Lunar distance:</strong> {{ image_info.lunar_distance }}</p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
