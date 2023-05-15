@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>CST 205 Earth </title>
+  </head>
+<body>
+  <div class="text-center">
+    
+</div>
+    <div class="container mb-4">  
+      <div class="card mt-4">
+        <div class="card-body">
+          <h2 class="card-title">Enter here is a satelite picture!</h2>
+          <img src="https://api.nasa.gov/planetary/earth/imagery?lon=100.75&lat=1.5&date={{earthd}}&api_key={{my_key}}" alt="satelite image"width="400"height="500">
+          <a href="{{ url_for('earth') }}">Click me</a>
+          
+          
+        </div>
+      </div>
+    </div>
+</body>
+</html>

@@ -88,4 +88,3 @@ def my_form_post():
         print('please try again')
         #returns data to nasa_home.html to display data
     return render_template('nasa_home.html', data=data)
-
