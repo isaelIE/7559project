@@ -1,8 +1,11 @@
+import subprocess
+
 from flask import Flask, render_template, request
 from marsrover import get_latest_photos, get_rover_info
 from epic import get_epic_data
 import datetime
 import random
+import sys
 
 app = Flask(__name__)
 
@@ -40,6 +43,16 @@ def nasa_epic():
         image_info, message = get_epic_data(date)
 
     return render_template('index2.html', message=message, image_info=image_info)
+
+@app.route('/nasa_base')
+def nasa_base():
+    subprocess.Popen(['pyhthon', 'NasaBase.py'])
+    return 'Nasa Base app launched'
+
+# @app.route('/mars_weather')
+# def mars_weather():
+#     subprocess.Popen(['python3.11', 'NasaBase.py'])
+#     return 'Mars weather app launched'
 
 if __name__ == '__main__':
     app.run(debug=True)
