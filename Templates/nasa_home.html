@@ -16,13 +16,15 @@
       {% if data %}
         {% for i in data %}
 
-
+        <!--loops through data passed in and grabs appropriate url and displays them as the src image-->
               <div class="card">
             <img src="{{i['url']}}" class="rounded-circle">
             <div class="card text-bg-primary mb-3" style="max-width: 100rem;">
             <div class="card-body">
+              <!-- displays the appropriate title based on recieved data-->
               <h5 class="card-title">{{i['title']}}</h5>
               <p class="lead">
+                <!--displays the appropriate explaination based on the inputted data-->
                 {{i['explanation']}}
               </p>
           </div>
