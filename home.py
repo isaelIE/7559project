@@ -46,7 +46,7 @@ def nasa_epic():
 
 @app.route('/nasa_base')
 def nasa_base():
-    subprocess.Popen(['pyhthon', 'NasaBase.py'])
+    subprocess.Popen(['python', 'NasaBase.py'])
     return 'Nasa Base app launched'
 
 # @app.route('/mars_weather')
