@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CST 205 APOD</title>
-  {{ bootstrap.load_css() }}
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
-
-    <div class="container">
-      <h1 class="mt-4">Nasa's Picture of the Day Photos</large></h1>
-      {% if data %}
-        {% for i in data %}
-
-        <!--loops through data passed in and grabs appropriate url and displays them as the src image-->
-              <div class="card">
-            <img src="{{i['url']}}" class="rounded-circle">
-            <div class="card text-bg-primary mb-3" style="max-width: 100rem;">
-            <div class="card-body">
-              <!-- displays the appropriate title based on recieved data-->
-              <h5 class="card-title">{{i['title']}}</h5>
-              <p class="lead">
-                <!--displays the appropriate explaination based on the inputted data-->
-                {{i['explanation']}}
-              </p>
-          </div>
-        </div>
-        <br>
-
-      {% endfor %}
+  <div class="container my-5">
+    <h1 class="text-center mb-4">NASA's Picture of the Day Photos</h1>
+    <form method="POST" action="{{ url_for('NasaBase') }}">
+      <div class="form-group">
+        <label for="start_date">Enter the start date (yyyy-mm-dd):</label>
+        <input type="text" class="form-control" id="start_date" name="start_date" required>
+      </div>
+      <div class="form-group">
+        <label for="end_date">Enter the end date (yyyy-mm-dd):</label>
+        <input type="text" class="form-control" id="end_date" name="end_date" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if data %}
+    {% for item in data %}
+    <div class="card mb-4">
+      <img src="{{ item['url'] }}" class="card-img-top" alt="NASA Image">
+      <div class="card-body">
+        <h5 class="card-title">{{ item['title'] }}</h5>
+        <p class="card-text">{{ item['explanation'] }}</p>
+      </div>
+    </div>
+    {% endfor %}
     {% else %}
-      no data
+    <div class="alert alert-info" role="alert">
+      No data available.
+    </div>
     {% endif %}
-</div>
-<a href="{{ url_for('main') }}" class="btn btn-info" role="button">Click to go Back to Nasa Date Picker</a>
+    <div class="text-center mt-3">
+      <a href="{{ url_for('home') }}" class="btn btn-info" role="button">Click to go Back to Menu</a>
+    </div>
+  </div>
 </body>
 </html>
-
-

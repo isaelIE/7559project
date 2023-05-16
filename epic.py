@@ -1,3 +1,5 @@
+# Name: Nikhil Kulkarni 
+# Class : cst205
 from flask import render_template, request
 import requests
 from datetime import datetime
@@ -5,7 +7,7 @@ from math import sqrt
 
 API_KEY = "LajpuMByvnSnptflcjdagHZfhTN6MMDLW7LSEKu0"
 BASE_URL = "https://api.nasa.gov/EPIC/api/natural/date/"
-
+# This function makes sure the user enters the correct date.
 def validate_date(date):
     try:
         date_obj = datetime.strptime(date, "%Y-%m-%d")
@@ -13,7 +15,7 @@ def validate_date(date):
         return date_obj >= min_date
     except ValueError:
         return False
-
+# This function gets the date checks if valid from validate_date function and if valid gets image using GET function.
 def get_epic_data(date):
     message = ""
     image_info = None
