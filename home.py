@@ -59,8 +59,8 @@ def nasa_base():
     subprocess.Popen(['python', 'NasaBase.py'])
     return 'Nasa Base app launched'
 
-@app.route('/earthsat', methods=('GET', 'POST'))
-def earthss():
+@app.route('/earth_sat', methods=['GET', 'POST'])
+def earths():
     date= ""
     form = EarthForm()
     if form.validate_on_submit():

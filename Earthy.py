@@ -42,15 +42,6 @@ def store_date(my_date):
 
 
 
-@app.route('/', methods=('GET', 'POST'))
-def earths():
-    date= ""
-    form = EarthForm()
-    if form.validate_on_submit():
-        date=form.earth_date.data
-        return render_template('earth.html',form=form, date=date, earthd=earthd, earthd2=earthd2, earthd3=earthd3, my_key=my_key)
-    return render_template('earth.html',form=form, earthd=earthd, earthd2=earthd2, earthd3=earthd3, my_key=my_key)
-
 @app.route('/view_playlist')
 def vs():
     return render_template('vs.html')
